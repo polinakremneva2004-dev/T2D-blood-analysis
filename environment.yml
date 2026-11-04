@@ -1,0 +1,35 @@
+# Conda environment for the whole pipeline.
+#   conda env create -f environment.yml
+#   conda activate t2d-blood
+#
+# Apple Silicon Macs: some bioconda tools have no native ARM build. If
+# creation fails, use:
+#   CONDA_SUBDIR=osx-64 conda env create -f environment.yml
+#
+# Python library versions are the ones the analysis code was tested with.
+# After creating the environment, record exact versions for the report with:
+#   conda env export --no-builds > environment.lock.yml
+name: t2d-blood
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.13
+  - pip
+  # command-line bioinformatics tools (called from Python)
+  - seqtk=1.4
+  - fastqc=0.12.1
+  - fastp=0.23.4
+  - salmon=1.10.3
+  - pip:
+      - pandas==3.0.5
+      - numpy==2.5.3
+      - scipy==1.18.1
+      - scikit-learn==1.9.1
+      - statsmodels==0.15.0
+      - matplotlib==3.11.2
+      - seaborn==0.13.2
+      - requests==2.34.2
+      - anndata==0.13.4
+      - pydeseq2==0.5.4
+      - multiqc
